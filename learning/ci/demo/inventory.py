@@ -41,6 +41,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("inventory", type=Path, help="path to a JSON inventory")
     args = parser.parse_args()
+
     try:
         servers = json.loads(args.inventory.read_text(encoding="utf-8"))
     except (OSError, UnicodeError, json.JSONDecodeError) as error:
@@ -52,6 +53,7 @@ def main():
         for error in errors:
             print(error)
         return 1
+
     print("Inventory is valid")
     return 0
 
